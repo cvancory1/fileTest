@@ -212,7 +212,7 @@ int main(int argc, char** argv) {
     char *currentWord = malloc(100);
     memset(currentWord, 0, 100);
     test = sscanf(localDict, "%s\n", currentWord);
-    // printf("Current word: %s\n", currentWord);
+    printf("Current word: %s\n", currentWord);
     check = checkWord(pwd, currentWord);
     // printf("check %s for word  %s\n", check, currentWord);
 
