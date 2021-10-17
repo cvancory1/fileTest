@@ -21,8 +21,6 @@ Chloe VanCory and Kalyn Howes
 
 
 
-
-
 typedef struct Users {
   char *  username;
   char *  id;
@@ -58,7 +56,7 @@ int main(int argc, char** argv) {
   // char name[MPI_MAX_PROCESSOR_NAME];
   // int nameLen;
   // MPI_File fh;
-  
+
   // // open file
   MPI_File_open(
     world,                             // comm
@@ -223,7 +221,7 @@ int main(int argc, char** argv) {
     while(test != EOF && offset< localDict_len){
       test = sscanf(localDict + offset, "%s\n", currentWord);
       offset += strlen(currentWord) + 1;
-      // printf("Rank %d checking: %s\n", rank, currentWord);
+      printf("Rank %d checking: %s\n", rank, currentWord);
       check = checkWord(pwd, currentWord); 
       
     }
