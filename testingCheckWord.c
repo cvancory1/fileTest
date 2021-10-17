@@ -10,7 +10,6 @@
 // char name[MPI_MAX_PROCESSOR_NAME];
 // int nameLen;
 // MPI_File fh;
-int fileIndex =0;
 
 // crypt function - returns char* of crypted input word
 char* crypting(char *password) {
@@ -28,7 +27,7 @@ int compare(char *password, char *crypted, char *nonhashedpass) {
   // printf("The password is: %s\n", password);
   // printf("The crypted is: %s\n", crypted);
   // printf("The nonhashedpass is: %s\n", nonhashedpass);
-  // if(strcmp(nonhashedpass, "abase11")==0){
+  // if(strcmp(nonhashedpass, "abase11")==0){s
   //   printf("The nonhashedpass is: %s\n", nonhashedpass);
   // }
 
@@ -36,31 +35,24 @@ int compare(char *password, char *crypted, char *nonhashedpass) {
     puts("****** PASSWORD HAS BEEN CRACKED !******");
     printf("The password is: %s\n", nonhashedpass);
     printf("The crypted version is: %s\n", crypted);
-                  // static int testingAmount =0;
-                  // testingAmount++;
-                  // if(testingAmount % 100000 == 0){
+
     // int length = strlen(nonhashedpass);
-    // char * newLine="\n";
-    // int end_length =1; // new line
-
-    // char * teststr = malloc(length + end_length);
-
-    // sprintf(teststr, "%s\n", nonhashedpass ); // puts null terminator after inserting word
-    // static int offset =0;
-    // MPI_File_write_at(
+    // char * printingBuf = malloc(length +1);
+    // sprintf(printingBuf, "%s\n", nonhashedpass ); // puts null terminator after inserting word
+    
+    //  MPI_File_write_at(
     //       fh,                // file handle
-    //       offset,        // offset
-    //       teststr,              // buf to be written
-    //       length+end_length,                // size+/
+    //       length*rank,        // offset
+    //       printingBuf,              // buf to be written
+    //       length+1,                // size+/
     //       MPI_CHAR,          // type
     //       MPI_STATUS_IGNORE  // status
     //     );
-      
-    //   offset+=length + end_length;
-       
-    //   fileIndex++; //move to the next line in the file after we found the first pwd
-      // printf("file index = %d word printed = %s offset=%d", fileIndex,teststr, offset );
-      // printf(" word printed = %s offset=%d len = %d newLen =%d\n",teststr, offset,length, strlen(teststr) );
+
+    return 1;
+  } else {
+    // printf("Password has not been cracked :(\n");
+    return 0;
   }
 }
 
