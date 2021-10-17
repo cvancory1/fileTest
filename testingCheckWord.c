@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
-// #include <crypt.h> //- mac doesn't know what this is
+#include <crypt.h> //- mac doesn't know what this is
 
 #define _DEFAULT_SOURCE
 MPI_Comm world;
