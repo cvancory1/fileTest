@@ -5,10 +5,10 @@
 #include <crypt.h> //- mac doesn't know what this is
 
 #define _DEFAULT_SOURCE
-MPI_Comm world;
-int worldSize, rank;
-char name[MPI_MAX_PROCESSOR_NAME];
-int nameLen;
+// MPI_Comm world;
+// int worldSize, rank;
+// char name[MPI_MAX_PROCESSOR_NAME];
+// int nameLen;
 MPI_File fh;
 
 int fileIndex =0;

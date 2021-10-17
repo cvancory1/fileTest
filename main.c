@@ -31,23 +31,23 @@ typedef struct Users {
 int main(int argc, char** argv) {
   
   // OLD VERSION 
-  // MPI_Init(&argc, &argv);
-  // MPI_Comm world = MPI_COMM_WORLD;
+  MPI_Init(&argc, &argv);
+  MPI_Comm world = MPI_COMM_WORLD;
 
-  // char name[MPI_MAX_PROCESSOR_NAME];
-  // int worldSize, rank, nameLen;
+  char name[MPI_MAX_PROCESSOR_NAME];
+  int worldSize, rank, nameLen;
+
+  MPI_Comm_size(world, &worldSize);
+  MPI_Comm_rank(world, &rank);
+  // MPI_Get_processor_name(name, &nameLen); 
+
+  // MPI_Init(&argc, &argv);
+  // world = MPI_COMM_WORLD;
+
 
   // MPI_Comm_size(world, &worldSize);
   // MPI_Comm_rank(world, &rank);
   // MPI_Get_processor_name(name, &nameLen); 
-
-  MPI_Init(&argc, &argv);
-  world = MPI_COMM_WORLD;
-
-
-  MPI_Comm_size(world, &worldSize);
-  MPI_Comm_rank(world, &rank);
-  MPI_Get_processor_name(name, &nameLen); 
 
   
   
