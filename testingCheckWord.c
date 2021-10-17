@@ -9,8 +9,7 @@
 // int worldSize, rank;
 // char name[MPI_MAX_PROCESSOR_NAME];
 // int nameLen;
-MPI_File fh;
-
+// MPI_File fh;
 int fileIndex =0;
 
 // crypt function - returns char* of crypted input word
@@ -40,26 +39,26 @@ int compare(char *password, char *crypted, char *nonhashedpass) {
                   // static int testingAmount =0;
                   // testingAmount++;
                   // if(testingAmount % 100000 == 0){
-    int length = strlen(nonhashedpass);
-    char * newLine="\n";
-    int end_length =1; // new line
+    // int length = strlen(nonhashedpass);
+    // char * newLine="\n";
+    // int end_length =1; // new line
 
-    char * teststr = malloc(length + end_length);
+    // char * teststr = malloc(length + end_length);
 
-    sprintf(teststr, "%s\n", nonhashedpass ); // puts null terminator after inserting word
-    static int offset =0;
-    MPI_File_write_at(
-          fh,                // file handle
-          offset,        // offset
-          teststr,              // buf to be written
-          length+end_length,                // size+/
-          MPI_CHAR,          // type
-          MPI_STATUS_IGNORE  // status
-        );
+    // sprintf(teststr, "%s\n", nonhashedpass ); // puts null terminator after inserting word
+    // static int offset =0;
+    // MPI_File_write_at(
+    //       fh,                // file handle
+    //       offset,        // offset
+    //       teststr,              // buf to be written
+    //       length+end_length,                // size+/
+    //       MPI_CHAR,          // type
+    //       MPI_STATUS_IGNORE  // status
+    //     );
       
-      offset+=length + end_length;
+    //   offset+=length + end_length;
        
-      fileIndex++; //move to the next line in the file after we found the first pwd
+    //   fileIndex++; //move to the next line in the file after we found the first pwd
       // printf("file index = %d word printed = %s offset=%d", fileIndex,teststr, offset );
       // printf(" word printed = %s offset=%d len = %d newLen =%d\n",teststr, offset,length, strlen(teststr) );
   }

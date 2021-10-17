@@ -39,7 +39,9 @@ int main(int argc, char** argv) {
 
   MPI_Comm_size(world, &worldSize);
   MPI_Comm_rank(world, &rank);
-  // MPI_Get_processor_name(name, &nameLen); 
+  MPI_Get_processor_name(name, &nameLen); 
+
+
 
   // MPI_Init(&argc, &argv);
   // world = MPI_COMM_WORLD;
