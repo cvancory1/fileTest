@@ -29,36 +29,26 @@ int compare(char *password, char *crypted, char *nonhashedpass) {
   // printf("The password is: %s\n", password);
   // printf("The crypted is: %s\n", crypted);
   // printf("The nonhashedpass is: %s\n", nonhashedpass);
-  // if(strcmp(nonhashedpass, "abase11")==0){s
+  // if(strcmp(nonhashedpass, "abase11")==0){
   //   printf("The nonhashedpass is: %s\n", nonhashedpass);
   // }
 
-  // if (strcmp(password, crypted) == 0) {
-  //   puts("****** PASSWORD HAS BEEN CRACKED !******");
-  //   printf("The password is: %s\n", nonhashedpass);
-  //   printf("The crypted version is: %s\n", crypted);
-  static int testingAmount =0;
-  testingAmount++;
-  if(testingAmount % 100000 == 0){
-    // char * str = "hello123";
+  if (strcmp(password, crypted) == 0) {
+    puts("****** PASSWORD HAS BEEN CRACKED !******");
+    printf("The password is: %s\n", nonhashedpass);
+    printf("The crypted version is: %s\n", crypted);
+                  // static int testingAmount =0;
+                  // testingAmount++;
+                  // if(testingAmount % 100000 == 0){
     int length = strlen(nonhashedpass);
     char * newLine="\n";
-    // int end_length =0; // new line
     int end_length =1; // new line
-    // int end_length =2; // new line+ end 
 
     char * teststr = malloc(length + end_length);
 
-    // sprintf(teststr, "%s%s", nonhashedpass, newLine ); // puts null terminator after inserting word
     sprintf(teststr, "%s\n", nonhashedpass ); // puts null terminator after inserting word
-    // teststr[length+2]='\0';
-    // teststr[length+1]='\n';
-
-    //int offset= (length+ end_length ) *fileIndex;
     static int offset =0;
-
-    // offset += (length+ end_length ) *fileIndex;
-     MPI_File_write_at(
+    MPI_File_write_at(
           fh,                // file handle
           offset,        // offset
           teststr,              // buf to be written
@@ -66,11 +56,12 @@ int compare(char *password, char *crypted, char *nonhashedpass) {
           MPI_CHAR,          // type
           MPI_STATUS_IGNORE  // status
         );
+      
       offset+=length + end_length;
        
-        fileIndex++; //move to the next line in the file after we found the first pwd
-        // printf("file index = %d word printed = %s offset=%d", fileIndex,teststr, offset );
-        printf(" word printed = %s offset=%d len = %d newLen =%d\n",teststr, offset,length, strlen(teststr) );
+      fileIndex++; //move to the next line in the file after we found the first pwd
+      // printf("file index = %d word printed = %s offset=%d", fileIndex,teststr, offset );
+      // printf(" word printed = %s offset=%d len = %d newLen =%d\n",teststr, offset,length, strlen(teststr) );
   }
 }
 

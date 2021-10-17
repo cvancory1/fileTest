@@ -58,6 +58,7 @@ int main(int argc, char** argv) {
   // char name[MPI_MAX_PROCESSOR_NAME];
   // int nameLen;
   // MPI_File fh;
+  
   // // open file
   MPI_File_open(
     world,                             // comm
@@ -73,63 +74,13 @@ int main(int argc, char** argv) {
 
   // malloc the actual pointers then malloc each of the arrays 
   FILE * shadowPtr;
-  shadowPtr = fopen ("shadow.txt", "r");
+  shadowPtr = fopen ("testShadow.txt", "r");
   char * line= malloc(255* sizeof(char));
   int numUsers = 4;
   Users shadowUsers[numUsers]; // 48 bytes 
   int index = 0;
 
-  // printf("here=\n");
-  // if(rank ==ROOT) {
-  //   while(fscanf(shadowPtr,"%s", line )!=EOF) {
-  //   // printf("here1=\n");
-
-    // printf("line=%s\n",line);
-    // char * username = strtok(line, ":" );
-    // char * alg = strtok(NULL, "$" );
-    // char * id = strtok(NULL, "$" );
-    // char * pwd = strtok(NULL, "$" );
-
-    // shadowUsers[index].username = username;
-    // shadowUsers[index].alg = alg;
-    // shadowUsers[index].id = id;
-    // shadowUsers[index].pwd = pwd;
-
-  //   shadowUsers[index].username = strtok(line, ":" );
-  //   printf("line=%s\n",line);
-  //   printf("shadowUsers[index].username=%s\n",shadowUsers[index].username);
-
-
-  //   shadowUsers[index].alg  = strtok(NULL, "$" );
-  //   shadowUsers[index].id = strtok(NULL, "$" );
-  //   shadowUsers[index].pwd  = strtok(NULL, "$" );
   
-  //   index++;
-    
-  //   // printf("username=%s\n",username);
-  //   // printf("alg=%s\n",alg);
-  //   // printf("id=%s\n",id);
-  //   // printf("pwd=%s\n\n",pwd);
-
-  //   }
-    
-  // }
-  
-  // fclose(shadowPtr);
-  // printf("checkpt 1 ");
-
-  /* ERROR CHECKING */
-  // if(rank == ROOT){
-  //   for(int i =0; i < numUsers ;i++){
-  //   puts("-------");
-
-  //     printf("i= %d username=%s\n",i, shadowUsers[i].username);
-  //     printf("alg=%s\n", shadowUsers[i].alg);
-  //     printf("id=%s\n", shadowUsers[i].id);
-  //     printf("pwd=%s\n\n", shadowUsers[i].pwd);
-  //   }
-  // }
-
   /*  
     READING THE WORDS.TXT file 
   */
@@ -240,7 +191,7 @@ int main(int argc, char** argv) {
   }
   int pswdIndex = 0; // index of the current users paswds all nodes are trying to find 
 
-  // printf("checkpt 5 ");
+  printf("checkpt 5 ");
 
   // /*
   //  *ALL NODES - Parse every words from the nodes local dictionary to crpyt and test ater 
@@ -255,20 +206,6 @@ int main(int argc, char** argv) {
 
   char * username = strtok(line, ":" );
   char * pwd = strtok(NULL, "\n" );
-  // char * salt = strtok(NULL, "\n" );
-  // char * pwd = strtok(NULL, "$" );
-  // printf("pwd=%s\n", pwd);
-  // printf("username=%s\n", username);
-
-  // fscanf(shadowPtr,"%s", line );
-  // username = strtok(line, ":" );
-  // printf("username=%s\n", username);
-
-  // printf("line is now: %s\n", line);
-  // printf("line after 9 now: %s\n", line + 10);
-  // printf("len of line: %d\n", strlen(line));
-  // printf("last char of line: %d\n", line[strlen(line)]);
-  // printf("pwd=%s\n", pwd);
 
   // // ------ DO CHECK WORD -------
     int test;
@@ -290,7 +227,6 @@ int main(int argc, char** argv) {
       check = checkWord(pwd, currentWord); 
       
     }
-    // TODO move the file ptr so that it restarts to the beginning now 
   
     pswdIndex++;
     fscanf(shadowPtr,"%s", line );
@@ -300,66 +236,6 @@ int main(int argc, char** argv) {
     printf("username=%s\n", username);
   }
 
-  // for(int i =0 ;i<numUsers ;i++){
-    /* ALL NODES - parse their first word in the localdict */ 
-    // int check;
-    // char * currentWord = strtok(localDict, "\n" );
-    // if(rank ==ROOT) printf("rank = %d currentWord = %s pass=%s  pswdIndex =%d \n", rank, currentWord, pwd, pswdIndex);
-
-    // if(rank ==ROOT){
-      // check = checkWord(pwd , currentWord);
-      // printf("IN MAIN");
-    // }
-
-    // printf("RANK = %d BACK IN MAIN\n", rank);
-    // if( check == 1 ){
-        // usrPwd[pswdIndex]=1; // this node found a password
-    // }
-
-    // int wordCounter = 1; // how many words of the local dict we have checked
-    // while(currentWord != NULL ){
-    // while(currentWord != NULL && usrPwd[pswdIndex] == 0 ){
-      // if(rank == ROOT){
-        // printf("rank = %d currentWord = %s\n", rank, currentWord);
-        // currentWord = strtok(NULL, "\n" );
-      // if( currentWord !=NULL ){
-      //   check = checkWord(pwd , currentWord);
-      //  }
-    // }
-      
-    // printf("rank = %d currentWord = %s\n", rank, currentWord);
-
-    // if( check == 1 ){
-      // usrPwd[pswdIndex]= 1; // this node found a password
-      // printf("rank = %d FOUND = %s\n", rank);
-    // }
-
-    // wordCounter++;
-    
-    // if(wordCounter == 2000) {
-      // wordCounter = 0; 
-      // MPI_Allreduce(
-      // &check,       // send buffer, an array
-      // &usrPwd[pswdIndex],       // recv buffer
-      // 1,          // count
-      // MPI_INT,    // datatype
-      // MPI_MAX,    // operation handle
-      // world       // comm
-      // );
-    // DO Reduce all - then all other nodes will see that they have a 1 there 
-
-      // if( usrPwd[pswdIndex] == 1 ){
-        // pswdIndex++;
-      // }
-    // }
-    // }
-      // }
-  // }
-
-  // printf("FINAL");
-  // close(fd);
-  // fclose(pswdfd);
-  
   MPI_File_close(&fh);
   MPI_Finalize();
   return 0;
